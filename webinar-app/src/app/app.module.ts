@@ -8,11 +8,13 @@ import { TextInputComponent } from './components/text-input/text-input.component
 import { TodoDisplayComponent } from './components/todo-display/todo-display.component';
 
 import { TodoService } from './services/todo.service';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     TextInputComponent,
-    TodoDisplayComponent
+    TodoDisplayComponent,
+    CapitalizePipe
   ],
   imports: [
     BrowserModule,
