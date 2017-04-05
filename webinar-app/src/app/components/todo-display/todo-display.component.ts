@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoService } from '../../services/todo.service';
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { Store, Action } from '@ngrx/store';
 
 @Component({
   selector: 'bp-todo-display',
@@ -19,14 +19,22 @@ export class TodoDisplayComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tasksToDisplay = this.todoService.getTasksObservable();
+    this.tasksToDisplay = this.store.select('todoList');
   }
 
   completeTask(index) {
+    this.store.dispatch({
+      type: 'TODO_TASK_COMPLETED',
+      payload: index
+    });
     this.todoService.completeTask(index);
   }
 
   deleteTask(index){
+    this.store.dispatch({
+      type: 'TODO_TASK_DELETED',
+      payload: index
+    })
     this.todoService.deleteTask(index);
   }
 

@@ -11,7 +11,7 @@ import { TodoService } from './services/todo.service';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
+import { todoReducer } from './store/todo-reducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +23,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     BrowserModule,
     FormsModule,
     HttpModule,
-    StoreModule.provideStore([]),
+    StoreModule.provideStore({todoList: todoReducer}),
     StoreDevtoolsModule.instrumentOnlyWithExtension({
       maxAge: 5
     })
