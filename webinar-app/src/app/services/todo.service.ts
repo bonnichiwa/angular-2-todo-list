@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class TodoService {
   tasks: Array<object> = [];
+  taskEmitter : BehaviorSubject<Array<Object>> = new BehaviorSubject([]);
   
   constructor() { 
     this.addTask('task 1');
     this.addTask('task 2');
     this.addTask('task 3');
+    this.taskEmitter.next(this.tasks);
   }
 
-  getTasks() {
-    return this.tasks;
+  getTasksObservable() {
+    return this.taskEmitter;
   }
 
   addTask(taskInput: string) {
