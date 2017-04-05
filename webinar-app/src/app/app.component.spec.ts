@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TodoService } from './services/todo.service';
 import { AppComponent } from './app.component';
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
   let fakeTodoService = {
     addTask: jasmine.createSpy('addTask')
   }
