@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoService } from '../../services/todo.service';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'bp-todo-display',
@@ -9,11 +10,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TodoDisplayComponent implements OnInit {
 
-  @Input() tasksToDisplay: BehaviorSubject<Array<object>>;
+  @Input() tasksToDisplay: Observable<Array<object>>;
   @Output() taskCompleted = new EventEmitter();
   @Output() taskDeleted = new EventEmitter();
 
-  constructor(private todoService: TodoService) { }
+  constructor(private todoService: TodoService, private store: Store<any>) { 
+ 
+  }
 
   ngOnInit() {
     this.tasksToDisplay = this.todoService.getTasksObservable();
@@ -21,7 +24,6 @@ export class TodoDisplayComponent implements OnInit {
 
   completeTask(index) {
     this.todoService.completeTask(index);
-    this.tasksToDisplay = this.todoService.getTasksObservable();
   }
 
   deleteTask(index){
