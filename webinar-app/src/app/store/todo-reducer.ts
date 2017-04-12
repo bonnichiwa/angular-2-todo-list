@@ -12,13 +12,16 @@ function getTask(taskInput: string){
         isComplete: false
     }
 }
-export function todoReducer(state = defaultTask, action: Action){
+export function todoReducer(state = [], action: Action){
     switch(action.type) {
+        case 'DEFAULT_TODO_LIST_LOADED':
+            return state.concat(action.payload);
         case 'TODO_TASK_COMPLETED':
-            // let taskToComplete = state[action.payload];
-            // taskToComplete.isComplete = !taskToComplete.isComplete;
-            // return state;
-            return 3;
+            //
+            return state;
+        case 'TODO_TASK_DELETED':
+            //
+            return state;
         case 'TODO_TASK_ADDED':
             let label = action.payload;
             let task = {

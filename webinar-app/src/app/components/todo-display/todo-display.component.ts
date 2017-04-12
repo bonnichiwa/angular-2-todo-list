@@ -14,7 +14,7 @@ export class TodoDisplayComponent implements OnInit {
   @Output() taskCompleted = new EventEmitter();
   @Output() taskDeleted = new EventEmitter();
 
-  constructor(private todoService: TodoService, private store: Store<any>) { 
+  constructor(private store: Store<any>) { 
  
   }
 
@@ -27,7 +27,6 @@ export class TodoDisplayComponent implements OnInit {
       type: 'TODO_TASK_COMPLETED',
       payload: index
     });
-    this.todoService.completeTask(index);
   }
 
   deleteTask(index){
@@ -35,7 +34,6 @@ export class TodoDisplayComponent implements OnInit {
       type: 'TODO_TASK_DELETED',
       payload: index
     })
-    this.todoService.deleteTask(index);
   }
 
   getCompleteStatusText(task){
